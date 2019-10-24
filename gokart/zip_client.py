@@ -2,10 +2,11 @@ import os
 import shutil
 import zipfile
 from abc import abstractmethod
+from typing import Union, IO
 
 
-def _unzip_file(filename: str, extract_dir: str) -> None:
-    zip_file = zipfile.ZipFile(filename)
+def _unzip_file(fp: Union[str, IO, os.PathLike], extract_dir: str) -> None:
+    zip_file = zipfile.ZipFile(fp)
     zip_file.extractall(extract_dir)
     zip_file.close()
 
